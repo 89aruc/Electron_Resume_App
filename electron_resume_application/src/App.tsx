@@ -3,7 +3,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/electron-vite.animate.svg'
 import 'Styles/App.css'
 
-function App() {
+export default function App() {
   const [count, setCount] = useState(0)
 
   return (
@@ -31,5 +31,3 @@ function App() {
     </>
   )
 }
-
-export default App
