@@ -2,7 +2,9 @@ import { IUser } from "Interfaces";
 
 export enum Pages {
     LOGIN = 'LOGIN',
-    HOME = 'HOME'
+    HOME = 'HOME',
+    ANIMATIONS = 'ANIMATIONS',
+    COMPONENTS = 'COMPONENTS'
 }
 
 export class State {

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseUrl = "http://127.0.0.1:6061";
+const baseUrl = "http://localhost:6061/api";
 type RequestType = "GET" | "POST" | "PATH" | "DELETE";
 
 export function Request<T>(path: string, token: string, type: RequestType, params?: any, body?: T) {

@@ -8,7 +8,7 @@ const defaultState: NavigationState = {
 }
 
 const handleSetActivePage = (state: NavigationState, action: PayloadAction<Pages>) => {
-    if(action?.payload) {
+    if(!action.payload) {
         return state;
     }
 

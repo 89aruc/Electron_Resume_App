@@ -5,6 +5,10 @@ const getUserState = (state: State) => {
     return state?.User;
 }
 
+const getUser = (state: UserState) => {
+    return state.currentUser;
+}
+
 const getUserToken = (state: UserState) => {
     return state?.token;
 }
@@ -12,4 +16,9 @@ const getUserToken = (state: UserState) => {
 export const getAuthToken = createSelector(
     getUserState,
     getUserToken
+)
+
+export const getCurrentUser = createSelector(
+    getUserState,
+    getUser
 )

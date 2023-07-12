@@ -2,7 +2,6 @@ import { createReducer, PayloadAction, ActionReducerMapBuilder } from '@reduxjs/
 import { UserState } from "Data/Objects/State";
 import { IApiUser } from 'Interfaces';
 import { loginUserAsync } from 'Data/Actions/User';
-import update from 'immutability-helper';
 
 const defaultState: UserState = {
     token: '',
@@ -10,25 +9,21 @@ const defaultState: UserState = {
 }
 
 const handleLoginUserAsync = (state: UserState, action: PayloadAction<IApiUser>) => {
-    if(action?.payload) {
+    if(!action.payload) {
         return state;
     }
 
     // eslint-disable-next-line no-unsafe-optional-chaining
-    const {user, token} = action?.payload;
+    const {user: { uuid, username, email }, token} = action?.payload;
 
-    return update(state, {
-        currentUser: {
-            $set: user
-        },
-        token: {
-            $set: token
-        }
-    })
+    const newUser = { uuid, username, email }
+
+    state.currentUser = newUser;
+    state.token = token;
 }
 
 const reducerBuilder = (builder: ActionReducerMapBuilder<UserState>) => {
-    builder.addCase(loginUserAsync.fulfilled, handleLoginUserAsync);
+    builder.addCase(loginUserAsync.fulfilled.type, handleLoginUserAsync);
 }
 
 export default createReducer(defaultState, reducerBuilder);
